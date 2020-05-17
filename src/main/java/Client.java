@@ -34,7 +34,7 @@ public class Client {
         this.selfSigned = selfSigned;
         this.headers = new HashMap<>(Map.ofEntries(
                 entry("content-type", "application/json"),
-                entry("x-sdk-version", ":java:0.0.1")
+                entry("x-sdk-version", "appwrite:java:0.0.1")
         ));
         this.config = new HashMap<>();
         this.http = http.newBuilder()
@@ -57,6 +57,26 @@ public class Client {
 //        dir.create();
 //        return dir;
 //    }
+
+    /// Your project ID
+    public Client setProject(String value) {
+        config.put("project", value);
+        addHeader("X-Appwrite-Project", value);
+        return this;
+    }
+
+    /// Your secret API key
+    public Client setKey(String value) {
+        config.put("key", value);
+        addHeader("X-Appwrite-Key", value);
+        return this;
+    }
+
+    public Client setLocale(String value) {
+        config.put("locale", value);
+        addHeader("X-Appwrite-Locale", value);
+        return this;
+    }
 
     public Client setSelfSigned(boolean status) {
         selfSigned = status;
